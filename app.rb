@@ -1,6 +1,7 @@
 require_relative 'config/environment'
 
 class App < Sinatra::Base
+  
   get '/reverse' do
     erb :reverse
   end
@@ -12,7 +13,6 @@ class App < Sinatra::Base
 
   get "/" do
     @user = "Ian"
-   
     erb :index # @user will be defined as 'Ian' in the view
   end
    
@@ -21,12 +21,14 @@ class App < Sinatra::Base
   end
 
   get '/friends' do
+    @friends = ['Emily Wilding Davison', 'Harriet Tubman', 'Joan of Arc', 'Malala Yousafzai', 'Sojourner Truth']
+    erb :friends
+   end
     # Write your code here!
-    post '/reverse' do
-      original_string = params["string"]
-      reversed_string = original_string.reverse
-     
-      erb :reversed
-    end
+
+  post '/reverse' do
+    original_string = params["string"]
+    @reversed_string = original_string.reverse
+    erb :reversed
   end
 end
